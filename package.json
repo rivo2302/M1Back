@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend application build with Express & MongoDB. ",
+  "main": "server.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rivo2302/M1Back.git"
+  },
+  "author": "Rivo - Landry M1ITU",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rivo2302/M1Back/issues"
+  },
+  "homepage": "https://github.com/rivo2302/M1Back#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"}
+}
