@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   firstName: { type: String, required: true },
   photo: String, // Assuming a URL to the photo
@@ -14,4 +14,4 @@ const userSchema = new Schema({
   commissionPercentage: Number // Only for employees
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = userSchema;
