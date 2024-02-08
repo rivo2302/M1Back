@@ -7,4 +7,4 @@ const serviceSchema = new Schema({
   processingTime: Number // Assuming this is in minutes or hours
 });
 
-module.exports = mongoose.model('Service', serviceSchema);
+module.exports = serviceSchema;

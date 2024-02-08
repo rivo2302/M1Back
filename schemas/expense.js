@@ -8,4 +8,4 @@ const expenseSchema = new Schema({
   name: String
 });
 
-module.exports = mongoose.model('Expense', expenseSchema);
+module.exports = expenseSchema;

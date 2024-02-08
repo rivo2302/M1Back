@@ -10,4 +10,4 @@ const appointmentSchema = new Schema({
   employee: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-module.exports = mongoose.model('Appointment', appointmentSchema);
+module.exports = appointmentSchema;

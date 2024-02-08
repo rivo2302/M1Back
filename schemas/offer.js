@@ -7,4 +7,4 @@ const clientOfferSchema = new Schema({
   price: Number
 });
 
-module.exports = mongoose.model('ClientOffer', clientOfferSchema);
+module.exports = clientOfferSchema;
