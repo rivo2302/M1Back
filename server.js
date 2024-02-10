@@ -1,9 +1,10 @@
 const express = require('express');
 const db = require('./utils/db');
-const app = express();
+
 
 db.connect();
 
+const app = express();
 app.use(express.json());
 
 require('./routes/user')(app);
