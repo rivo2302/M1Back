@@ -10,7 +10,7 @@ class Datatabase {
     async connect() {
         try {
             await mongoose.connect(this.connectionString, {});
-            console.log('Mongo DB connected');
+            console.log('Mongos DB connected' , config);
         } catch (err) {
             console.error('Error:', err);
         }
