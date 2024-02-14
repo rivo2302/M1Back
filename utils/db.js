@@ -4,7 +4,7 @@ const config = require('../config/conf');
 class Datatabase {
     constructor() {
         {
-            this.connectionString = `mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`;
+            this.connectionString = `mongodb://mongo_db:/${config.DB_NAME}`;
         }
     }
     async connect() {
