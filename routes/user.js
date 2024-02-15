@@ -5,7 +5,7 @@ module.exports = app => {
     const userController = require('../controllers/user');
 
     userRouter.post('/signup', userController.signupUser);
-    userRouter.get('/login', userController.loginUser);
+    userRouter.post('/login', userController.loginUser);
     userRouter.get('/', auth(['Manager']), userController.getAllUser);
 
     app.use('/user', userRouter);
