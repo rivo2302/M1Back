@@ -4,7 +4,7 @@ const config = require('../config/conf');
 class Datatabase {
     constructor() {
         {
-            this.connectionString = `mongodb://localhost:27017/backend`;
+            this.connectionString = `mongodb://mongodb:27017/backend`;
             console.log('this.connectionString', this.connectionString);
         }
     }
