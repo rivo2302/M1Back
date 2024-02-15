@@ -4,15 +4,12 @@ const config = require('../config/conf');
 class Datatabase {
     constructor() {
         {
-            this.connectionString = `mongodb://localhost:27017/backend`;
+            this.connectionString = `mongodb://mongo_db:27017/backend`;
         }
     }
     async connect() {
         try {
-            await mongoose.connect(this.connectionString, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            });
+            await mongoose.connect(this.connectionString, {});
             console.log('Mongos DB connected', config);
         } catch (err) {
             console.error('Error:', err);
