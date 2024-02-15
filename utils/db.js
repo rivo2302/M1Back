@@ -1,21 +1,36 @@
 const mongoose = require('mongoose');
-const config = require('../config/conf');
 
-class Datatabase {
-    constructor() {
-        {
-            this.connectionString = `mongodb://mongo_db:27017/backend`;
-        }
-    }
-    async connect() {
-        try {
-            await mongoose.connect(this.connectionString, {});
-            console.log('Mongos DB connected', config);
-        } catch (err) {
-            console.error('Error:', err);
-        }
-    }
+class Database {
+  constructor() {
+    this._connect();
+  }
+
+  _connect() {
+    const maxRetries = 5; 
+    let retries = 0; 
+    const connectWithRetry = () => {
+      mongoose
+        .connect('mongodb://mongo_db:27017/backend', {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        })
+        .then(() => {
+          console.log('Database connection successful');
+        })
+        .catch((err) => {
+          console.error('Database connection error:', err);
+          if (retries < maxRetries) {
+            retries++;
+            console.log(`Retrying database connection (Attempt ${retries} of ${maxRetries})...`);
+            // Wait 5 seconds before retrying
+            setTimeout(connectWithRetry, 5000);
+          } else {
+            console.error('Database connection failed after retries');
+          }
+        });
+    };
+    connectWithRetry();
+  }
 }
 
-
-module.exports = new Datatabase();
+module.exports = new Database(); // Export an instance of the Database class

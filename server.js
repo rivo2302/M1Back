@@ -4,7 +4,6 @@ const db = require('./utils/db');
 
 
 dotenv.config();
-db.connect();
 
 const app = express();
 
