@@ -4,7 +4,7 @@ services:
   mongo_db:
     container_name: mongo_db
     image: mongo:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - 27017:27017
     volumes:
@@ -24,8 +24,10 @@ services:
       - mongo_db
     networks:
       - backend
+    restart: always
 
 volumes:
-  mongo_data: {}
+  mongo_data: {}  
+  
 networks:
   backend:

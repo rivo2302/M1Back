@@ -36,10 +36,10 @@ exports.loginUser = async (req, res) => {
         if (user) {
             bcrypt.compare(req.body.password, user.password, (err, result) => {
                 if (err) {
-                    res.status(401).send({ message: 'Error Authentication failed' });
+                    res.status(401).send({ message: 'Error Authentication failed' , err: err });
                 } else if (result) {
                     const token = jwt.sign({ id: user._id, role: user.role }, config.JWT_SECRET, { expiresIn: '24h' });
-                    return res.status(200).send({ message: 'Authentication successful', token: token, user: user });
+                    return res.status(200).send({ message: 'Authentication successful', token: token, user: { id: user._id, role: user.role, email: user.email } });
                 } else {
                     res.status(401).send({ message: '401 Authentication failed' });
                 }
@@ -47,15 +47,14 @@ exports.loginUser = async (req, res) => {
         } else {
             res.status(401).send({ message: 'Authentication failed demo' });
         }
-    }
-    catch (error) {
+    } catch (error) {
         res.status(500).send({ message: error.message });
     }
 }
 
 exports.getAllUser = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find({}, req.fields);
         res.status(200).send(users);
     } catch (error) {
         res
@@ -64,3 +63,22 @@ exports.getAllUser = async (req, res) => {
     }
 }
 
+exports.getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).select(req.fields);
+        res.status(200).send(user);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+
+exports.updateUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).send(user);
+    }
+    catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
