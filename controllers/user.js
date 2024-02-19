@@ -36,7 +36,7 @@ exports.loginUser = async (req, res) => {
         if (user) {
             bcrypt.compare(req.body.password, user.password, (err, result) => {
                 if (err) {
-                    res.status(401).send({ message: 'Error Authentication failed' , err: err });
+                    res.status(401).send({ message: 'Error Authentication failed', err: err });
                 } else if (result) {
                     const token = jwt.sign({ id: user._id, role: user.role }, config.JWT_SECRET, { expiresIn: '24h' });
                     return res.status(200).send({ message: 'Authentication successful', token: token, user: { id: user._id, role: user.role, email: user.email } });
@@ -54,7 +54,15 @@ exports.loginUser = async (req, res) => {
 
 exports.getAllUser = async (req, res) => {
     try {
-        const users = await User.find({}, req.fields);
+        if (req.query.role) {
+            let role = req.query.role.charAt(0).toUpperCase() + req.query.role.slice(1);
+            var users = await User.find({
+                role: role
+            }).select(req.fields);
+        }
+        else {
+            var users = await User.find().select(req.fields);
+        };
         res.status(200).send(users);
     } catch (error) {
         res
