@@ -13,7 +13,6 @@ const authorize = (allowedRoles) => {
         try {
             const decoded = jwt.verify(token, config.JWT_SECRET);
             req.user = decoded;
-            console.log(allowedRoles)
             
             if (allowedRoles === undefined || allowedRoles.length === 0 ){
                 return next();

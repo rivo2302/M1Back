@@ -12,7 +12,7 @@ class Database {
       mongoose
         .connect('mongodb://mongo_db:27017/backend', {})
         .then(() => {
-          console.log('Database connection successfuls');
+          console.log('Database connection successful');
         })
         .catch((err) => {
           console.error('Database connection error:', err);
