@@ -1,12 +1,12 @@
 const userAcces = {
     Employee: {
         read: {
-            include: ['lastName', 'firstName', 'photo', 'email', 'role','workSchedule'],
+            include: null,
             exclude: ['password']
         },
         write: {
-            include: ['lastName', 'firstName', 'photo', 'email', 'workSchedule' , 'commissionPercentage'],
-            exclude: [ 'password' , 'role']
+            include: null,
+            exclude: ['password', 'role', 'commissionPercentage']
         }
 
     },
@@ -23,11 +23,11 @@ const userAcces = {
     Client: {
         read: {
             include: ['lastName', 'firstName', 'photo', 'email', 'favoriteEmployees'],
-            exclude: ['password', 'role']
+            exclude: null
         },
         write: {
             include: ['lastName', 'firstName', 'photo', 'email', 'password', 'favoriteEmployees'],
-            exclude: ['role']
+            exclude: null
         }
 
     }

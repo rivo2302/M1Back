@@ -39,7 +39,7 @@ exports.loginUser = async (req, res) => {
                     res.status(401).send({ message: 'Error Authentication failed', err: err });
                 } else if (result) {
                     const token = jwt.sign({ id: user._id, role: user.role }, config.JWT_SECRET, { expiresIn: '24h' });
-                    return res.status(200).send({ message: 'Authentication successful', token: token, user: { id: user._id, role: user.role, email: user.email } });
+                    return res.status(200).send({ message: 'Authentication successful', token: token, user: user });
                 } else {
                     res.status(401).send({ message: '401 Authentication failed' });
                 }
