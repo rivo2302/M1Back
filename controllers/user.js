@@ -45,7 +45,7 @@ exports.loginUser = async (req, res) => {
                 }
             });
         } else {
-            res.status(401).send({ message: 'Authentication failed demo' });
+            res.status(401).send({ message: 'Authentication failed for this user' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
