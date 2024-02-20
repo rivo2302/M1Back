@@ -5,22 +5,22 @@ services:
     container_name: mongo_db
     image: mongo:latest
     restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} 
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
     networks:
       - backend
+    command: mongod --auth
 
   api:
     build: .
     ports:
       - "3000:3000"
-    environment:
-      PORT: 3000
-      MONGODB_URI: mongodb://mongo_db:27017
-      DB_NAME: backend
-    depends_on: 
+    depends_on:
       - mongo_db
     networks:
       - backend
