@@ -5,16 +5,16 @@ services:
     container_name: mongo_db
     image: mongo:latest
     restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} 
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+    #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} 
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
     networks:
       - backend
-    command: mongod --auth
+    # command: mongod --auth
 
   api:
     build: .
