@@ -7,7 +7,7 @@ class Database {
   }
 
   _connect() {
-    const maxRetries = 5;
+    const maxRetries = 1;
     let retries = 0;
     const connectWithRetry = () => {
       let uri = `mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}?authSource=admin`;
