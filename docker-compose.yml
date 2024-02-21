@@ -4,30 +4,36 @@ services:
   mongo_db:
     container_name: mongo_db
     image: mongo:latest
-    restart: always
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-    #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} 
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$DB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
     ports:
       - "27017:27017"
     volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
       - mongo_data:/data/db
-    networks:
-      - backend
-    # command: mongod --auth
+    stdin_open: true
+    tty: true
 
   api:
     build: .
     ports:
       - "3000:3000"
+    env_file: ./.env
     depends_on:
       - mongo_db
-    networks:
-      - backend
-    restart: always
+    restart: unless-stopped
+
+    environment:
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$DB_PORT
 
 volumes:
   mongo_data:
 
-networks:
-  backend:
+

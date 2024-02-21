@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require("../config/conf");
 
 class Database {
   constructor() {
@@ -9,8 +10,10 @@ class Database {
     const maxRetries = 5;
     let retries = 0;
     const connectWithRetry = () => {
+      let uri = `mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}?authSource=admin`;
+      console.log('MongoDB connection string:', uri);
       mongoose
-        .connect('mongodb://mongo_db:27017/backend', {})
+        .connect(uri) 
         .then(() => {
           console.log('Database connection successful');
         })
