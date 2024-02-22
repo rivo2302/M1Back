@@ -1,7 +1,5 @@
 const auth = require('../middleware/auth');
 
-
-
 module.exports = (app) => {
 
     const expenseRouter = require('express').Router();

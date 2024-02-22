@@ -1,8 +1,5 @@
 const auth = require('../middleware/auth');
 
-
-
-
 module.exports = (app) => {
     const serviceRouter = require('express').Router();
     const serviceController = require('../controllers/service');

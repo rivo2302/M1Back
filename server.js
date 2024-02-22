@@ -19,6 +19,7 @@ app.use(express.json());
 require('./routes/user')(app);
 require('./routes/service')(app);
 require('./routes/expense')(app);
+require('./routes/appointment')(app);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

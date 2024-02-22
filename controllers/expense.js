@@ -17,7 +17,6 @@ exports.createExpense = async (req, res) => {
 }
 
 exports.getAllExpense = async (req, res) => {
-    console.log('getAllExpense');
     try {
         var expenses = await Expense.find();
         res.status(200).send(expenses);
