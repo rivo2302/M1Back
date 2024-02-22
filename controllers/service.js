@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 const serivceSchema = require('../schemas/service');
-const jwt = require('jsonwebtoken');``
 
 const Service = mongoose.model('Service', serivceSchema);
-const config = require('../config/conf');
 
 exports.createService = async (req, res) => {
     const service = new Service();

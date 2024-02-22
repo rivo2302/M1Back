@@ -3,6 +3,7 @@ const config = require('../config/conf');
 
 const authorize = (allowedRoles) => {
     return (req, res, next) => {
+        console.log('authorize');
         var token = req.header('Authorization');
         
         if (!token || !token.startsWith('Bearer ')) {
