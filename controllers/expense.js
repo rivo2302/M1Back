@@ -50,8 +50,8 @@ exports.updateExpense = async (req, res) => {
 
 exports.deleteExpense = async (req, res) => {
     try {
-        var expense = await Expense.findById(req.params.id);
-        var deletedExpense = await expense.remove();
+        var deletedExpense = await Expense.deleteOne({ _id: req.params.id });
+
         res.status(200).send(deletedExpense);
     } catch (error) {
         res.status(500).send({ message: error.message });

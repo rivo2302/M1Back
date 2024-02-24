@@ -46,3 +46,12 @@ exports.updateService = async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 }
+
+exports.deleteService = async (req, res) => {
+    try {
+        var deletedService = await Service.deleteOne({ _id: req.params.id });
+        res.status(200).send(deletedService);
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}

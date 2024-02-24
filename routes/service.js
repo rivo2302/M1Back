@@ -8,6 +8,7 @@ module.exports = (app) => {
     serviceRouter.get('/', auth(), serviceController.getAllService);
     serviceRouter.get('/:id', auth(), serviceController.getServiceById);
     serviceRouter.put('/:id', auth(), serviceController.updateService);
+    serviceRouter.delete('/:id', auth(), serviceController.deleteService)
 
     app.use('/service', serviceRouter);
 }

@@ -18,11 +18,23 @@ exports.createAppointment = async (req, res) => {
 
 exports.getAllAppointment = async (req, res) => {
     try {
+        let filter = {};
+        if (req.query.client) {
+            filter.client = req.query.client;
+        }
+        if (req.query.employee) {
+            filter.employee = req.query.employee;
+        }
+        if (req.query.status) {
+            filter.status = req.query.status;
+        }
+
         var appointments = await Appointment.
-            find()
+            find(filter)
             .populate('requestedServices')
             .populate('client')
             .populate('employee')
+            .lean();
 
         res.status(200).send(appointments);
     } catch (error) {
@@ -57,8 +69,7 @@ exports.updateAppointment = async (req, res) => {
 
 exports.deleteAppointment = async (req, res) => {
     try {
-        var appointment = await Appointment.findById(req.params.id);
-        var deletedAppointment = await appointment.remove();
+        var deletedAppointment = await Appointment.deleteOne({ _id: req.params.id });
         res.status(200).send(deletedAppointment);
     } catch (error) {
         res.status(500).send({ message: error.message });
