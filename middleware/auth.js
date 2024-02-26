@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/conf');
 
 const authorize = (allowedRoles) => {
-    return (req, res, next) => {
+    return (req, res, next) => {    
         var token = req.header('Authorization');
         
         if (!token || !token.startsWith('Bearer ')) {
             return res.status(401).send('No token, authorization denied');
         }
-        var token = token.replace('Bearer ', '');
+        token = token.replace('Bearer ', '');
 
         try {
             const decoded = jwt.verify(token, config.JWT_SECRET);
