@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const expenseSchema = new Schema({
   description: String,
-  price: Number,
-  name: String
+  price: {type : Number , required : true },
+  name:  {type : String , required : true },
 });
 
 module.exports = expenseSchema;

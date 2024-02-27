@@ -3,8 +3,9 @@ const { Schema } = mongoose;
 
 const clientOfferSchema = new Schema({
   description: String,
-  photo: String, // Assuming a URL to the photo
-  price: Number
+  price: Number,
+  startDate: { type: Date , required: true },
+  endDate: { type: Date  , required: true },
 });
 
 module.exports = clientOfferSchema;
