@@ -1,4 +1,4 @@
-version: '3.9'
+latestversion: '3.9'
 
 services:
   mongo_db:
@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - "8081:8081"
+      - "8082:8081"
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=$DB_USER
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$DB_PASSWORD
