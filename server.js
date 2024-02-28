@@ -22,7 +22,7 @@ require('./routes/expense')(app);
 require('./routes/appointment')(app);
 require('./routes/offer')(app);
 require('./routes/notification')(app);
-require('./routes/stats')(app);
+// require('./routes/stats')(app);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
