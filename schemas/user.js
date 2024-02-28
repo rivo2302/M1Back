@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   favoriteEmployees: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Only for clients
   salary: Number, // Only for employees
-  workSchedule: {type: String}, // Only for employees
+  workSchedule: {type: String}, // Only for employee"
 });
 
 module.exports = userSchema;
