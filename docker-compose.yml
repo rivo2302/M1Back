@@ -20,6 +20,7 @@ services:
   mongo_express:
     image: mongo-express:latest
     restart: unless-stopped
+    env_file: ./.env
     ports:
       - "8081:8081"
     environment:
@@ -27,6 +28,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$DB_PASSWORD
       - ME_CONFIG_MONGODB_SERVER=mongo_db
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=$DB_USER
+      - ME_CONFIG_BASICAUTH_PASSWORD=$DB_PASSWORD
     depends_on:
       - mongo_db
 
