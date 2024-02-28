@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
   favoriteEmployees: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Only for clients
   salary: Number, // Only for employees
   workSchedule: {type: String}, // Only for employees
-  commissionPercentage: Number // Only for employees
 });
 
 module.exports = userSchema;

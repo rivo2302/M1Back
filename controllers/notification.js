@@ -44,7 +44,7 @@ exports.getNotification = async (req, res) => {
 
             notifications = appointments.map(appointment => ({
                 name: "Tâches",
-                Date: `Dans ${Math.floor((appointment.startDate.getTime() - new Date().getTime()) / 3600000)} heures`,
+                Date: `Dans ${Math.floor((appointment.startDate.getTime() - new Date().getTime()) / 3600000)} heures    `,
                 Description: appointment.client?.firstName + ' ' + appointment.client?.lastName
             }));
         }
