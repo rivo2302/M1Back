@@ -1,4 +1,4 @@
-db.createUser({
+db.updateUser({
     user: process.env.DB_USER,
     pwd: process.env.DB_PASSWORD,
     roles: [
@@ -22,5 +22,6 @@ db.createUser({
             role: "readWriteAnyDatabase",
             db: "admin"
         }
+
     ]
 });
