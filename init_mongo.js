@@ -5,6 +5,10 @@ db.createUser({
         {
             role: "readWrite",
             db: process.env.DB_NAME
+        } ,
+        {
+            role: "dbAdmin",
+            db: process.env.DB_NAME
         }
     ]
 });
