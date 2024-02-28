@@ -1,4 +1,4 @@
-name: Odoo Middleware CI/CD
+name: CD to server
 
 on:
   push:
