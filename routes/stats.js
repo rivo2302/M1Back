@@ -1,14 +1,11 @@
 
 const auth = require('../middleware/auth');
-const offerController = require('../controllers/offerController'); // Assurez-vous que le chemin est correct
+const statController = require('../controllers/stats'); // Assurez-vous que le chemin est correct
 
 module.exports = (app) => {
-    const offerRouter = express.Router();
+    const statRouter = require('express').Router();
 
-    // Les routes pour les opérations demandées
-    offerRouter.get('/reservations-count', auth(), offerController.getReservationsCount);
-    offerRouter.get('/turnover', auth(), offerController.getTurnover);
-    offerRouter.get('/profit', auth(), offerController.getProfit);
+    statRouter.get('/', auth(), statController.getinfos);
 
-    app.use('/offer', offerRouter);
+    app.use('/stat', statRouter);
 };
