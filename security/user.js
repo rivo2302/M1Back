@@ -6,7 +6,7 @@ const userAcces = {
         },
         write: {
             include: null,
-            exclude: ['password', 'role', 'commissionPercentage']
+            exclude: ['password', 'role']
         }
 
     },
