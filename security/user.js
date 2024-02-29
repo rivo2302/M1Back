@@ -1,7 +1,7 @@
 const userAcces = {
     Employee: {
         read: {
-            include: null,
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
             exclude: ['password']
         },
         write: {
@@ -12,11 +12,11 @@ const userAcces = {
     },
     Manager: {
         read: {
-            include: null,
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
             exclude: ['password']
         },
         write: {
-            include: null,
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
             exclude: null
         }
     },
