@@ -1,24 +1,24 @@
 const userAcces = {
-    Employee: {
-        read: {
-            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
-            exclude: ['password']
-        },
-        write: {
-            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
-            exclude: ['password', 'role']
-        }
-
-    },
     Manager: {
         read: {
-            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'", "role"],
             exclude: ['password']
         },
         write: {
-            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'"],
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'", "role"],
             exclude: null
         }
+    },
+    Employee: {
+        read: {
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'", "role"],
+            exclude: ['password']
+        },
+        write: {
+            include: ['lastName', 'firstName', 'avatar', 'email', 'favoriteEmployees', "salary'", "role"],
+            exclude: ['password']
+        }
+
     },
     Client: {
         read: {
