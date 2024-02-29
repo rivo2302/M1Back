@@ -36,7 +36,7 @@ exports.getNotification = async (req, res) => {
                 Description: appointment.client?.firstName + ' ' + appointment.client?.lastName
             })));
         }
-        else if (user.role === 'Manager') {
+        else if (user.role === 'Employee') {
             const appointments = await Appointment.find({
                 employee: user_id,
                 startDate: { $gte: new Date() }
