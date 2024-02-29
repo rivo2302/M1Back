@@ -1,10 +1,10 @@
-latestversion: '3.9'
+version: '3.9'
 
 services:
   mongo_db:
     container_name: mongo_db
     image: mongo:latest
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$DB_USER
@@ -16,13 +16,15 @@ services:
       - mongo_data:/data/db
     stdin_open: true
     tty: true
+    networks:
+      - custom_network
 
-  mongo_express:
-    image: mongo-express:latest
-    restart: unless-stopped
+  mongo_exp:
+    image: mongo-express
+    restart: always
     env_file: ./.env
     ports:
-      - "8082:8081"
+      - "8081:8081"
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=$DB_USER
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$DB_PASSWORD
@@ -31,6 +33,9 @@ services:
       - ME_CONFIG_BASICAUTH_PASSWORD=$DB_PASSWORD
     depends_on:
       - mongo_db
+    networks:
+      - custom_network
+    
 
   api:
     build: .
@@ -39,13 +44,19 @@ services:
     env_file: ./.env
     depends_on:
       - mongo_db
-    restart: unless-stopped
+    restart: always
     environment:
       - DB_HOST=mongo_db
       - DB_USER=$DB_USER
       - DB_PASSWORD=$DB_PASSWORD
       - DB_NAME=$DB_NAME
       - DB_PORT=$DB_PORT
+    networks:
+      - custom_network
 
 volumes:
-  mongo_data:
+  mongo_data:   
+
+networks:
+  custom_network:
+    driver: bridge
